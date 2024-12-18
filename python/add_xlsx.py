@@ -27,7 +27,6 @@ def add_record_to_excel(file_path, record_name, project_manager, days_to_complet
 
 # GUI Function
 def open_gui():
-    # Function to enforce up to 2 selections for importance
     def check_importance():
         selected = [var_low.get(), var_medium.get(), var_high.get()]
         if sum(selected) > 2:  # If more than 2 checkboxes are selected
@@ -35,7 +34,7 @@ def open_gui():
             return False
         return True
 
-    # Submit function to handle data input
+    # submit function - handle data input
     def submit():
         record_name = record_name_entry.get()
         project_manager = project_manager_entry.get()
@@ -61,7 +60,7 @@ def open_gui():
             return
         
         add_record_to_excel("xlsx/add_record.xlsx", record_name, project_manager, days_to_complete, importance)
-        # Clear fields
+        # clear fields after submit
         record_name_entry.delete(0, tk.END)
         project_manager_entry.delete(0, tk.END)
         days_combo.set("")
@@ -116,7 +115,7 @@ def open_gui():
     tk.Checkbutton(root, text="High", variable=var_high, onvalue=1, offvalue=0, bg="#1E3D59", fg=fg_color, font=input_font, command=check_importance).grid(row=4, column=1, sticky="w", padx=180)
 
     # Submit and Exit Buttons
-    button_frame = tk.Frame(root, bg="#1E3D59")  # Frame to hold buttons side by side
+    button_frame = tk.Frame(root, bg="#1E3D59")
     button_frame.grid(row=5, column=0, columnspan=2, padx=20, pady=20, sticky="w")
 
     submit_btn = tk.Button(button_frame, text="Submit", command=submit, font=label_font, bg=btn_bg, fg="#1E3D59", padx=10, pady=5)
